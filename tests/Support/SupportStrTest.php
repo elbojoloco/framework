@@ -348,6 +348,13 @@ class SupportStrTest extends TestCase
         $this->assertSame('foo bar baz', Str::replace(['?1', '?2', '?3'], ['foo', 'bar', 'baz'], '?1 ?2 ?3'));
     }
 
+    public function testReplaceInsensitive()
+    {
+        $this->assertSame('foo bar laravel', Str::replaceInsensitive('baz', 'laravel', 'foo bar BAZ'));
+        $this->assertSame('Laravel bar baz', Str::replaceInsensitive('Foo', 'laravel', 'foo bar BAZ'));
+        $this->assertSame('foo bar baz', Str::replaceInsensitive(['?1', '?2', '?3'], ['foo', 'bar', 'baz'], '?1 ?2 ?3'));
+    }
+
     public function testReplaceArray()
     {
         $this->assertSame('foo/bar/baz', Str::replaceArray('?', ['foo', 'bar', 'baz'], '?/?/?'));
